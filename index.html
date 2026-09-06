@@ -333,7 +333,7 @@
         We measure exactly where you stand, and what to fix first.
       </p>
       <div class="cta-row">
-        <a href="#request" class="btn btn-primary">Request the audit — $299 <span class="arr">-&gt;</span></a>
+        <a href="#request" class="btn btn-primary">Request the audit — $299</a>
         <a href="https://calendly.com/quotedornot/intro" class="btn btn-ghost">Book a 15-min intro call</a>
       </div>
       <div class="hero-trust">
@@ -563,15 +563,7 @@
     <div class="req-grid">
       <div class="req-copy reveal">
         <h2 class="h2">Request your audit.</h2>
-<div class="steps-note" style="margin:18px 0 8px;font-size:15px;color:#94a3b8">
-  <strong style="color:#e2e8f0">1.</strong> Pay $299 &rarr;
-  <strong style="color:#e2e8f0">2.</strong> You answer a short 5-min intake form (email link) &rarr;
-  <strong style="color:#e2e8f0">3.</strong> Full report in 5 business days
-</div>
-<div style="margin:14px 0 26px">
-  <a href="https://quotedornotstore.lemonsqueezy.com/checkout/buy/bfc23d4c-0dcc-42ae-833c-8667a11f799e?media=0&logo=0" class="btn btn-primary" style="font-size:18px;padding:16px 28px">Pay $299 &amp; start your audit</a>
-</div>
-        <p>Tell us where to point the questions. We reply within one business day to confirm scope, timing, and your start date.</p>
+<p>Tell us where to point the questions. We reply within one business day to confirm scope, timing, and your start date.</p>
         <ul class="req-steps">
           <li><b>01</b><span>You submit the form. It takes about two minutes.</span></li>
           <li><b>02</b><span>We confirm your niche and region, so the questions match how your buyers actually ask.</span></li>
@@ -624,7 +616,7 @@
               <option>Prefer not to say</option>
             </select>
           </div>
-          <button type="submit" class="form-submit">Request the audit — $299</button>
+          <button type="submit" class="form-submit">Request the audit</button>
           <p class="form-note">One payment, no subscription or retainer. Full refund if the report shows nothing actionable. (Re-audit after 90 days: $149, optional.)</p>
         </form>
       </div>
@@ -689,11 +681,17 @@ function submitAuditForm(e) {
   e.preventDefault();
   var f = e.target;
   var get = function(n){ var el=f.querySelector('[name="'+n+'"]'); return el ? el.value.trim() : ''; };
-  var body = "Audit request\n\nName: "+get("name")+"\nWork email: "+get("email")+"\nCompany: "+get("company")+"\nWebsite: "+get("website")+"\nNiche: "+get("niche")+"\nMarketing budget: "+get("budget")+"\n\n(sent via quotedornot.com)";
+  // 1) checkout megnyitasa uj fuleben
+  window.open("https://quotedornotstore.lemonsqueezy.com/checkout/buy/bfc23d4c-0dcc-42ae-833c-8667a11f799e?media=0&logo=0", "_blank");
+  // 2) az adatok meg tobbekbol elo, hogy a kiszallas ne vesszen el
+  var body = "Audit request\n\nName: "+get("name")+"\nWork email: "+get("email")+"\nCompany: "+get("company")+"\nWebsite: "+get("website")+"\nNiche: "+get("niche")+"\nMarketing budget: "+get("budget")+"\n\nCheckout opened in a new tab. (sent via quotedornot.com)";
   var mail = "hello@quotedornot.com";
-  window.location.href = "mailto:"+mail+"?subject="+encodeURIComponent("AI Visibility Audit request - "+get("company"))+"&body="+encodeURIComponent(body);
+  // a mailto csak hatterben valtja ki - nem zavarja a checkout tabot
+  var a = document.createElement("a");
+  a.href = "mailto:"+mail+"?subject="+encodeURIComponent("Audit request - "+get("company"))+"&body="+encodeURIComponent(body);
+  a.style.display = "none"; document.body.appendChild(a); a.click();
   var btn = f.querySelector('button[type="submit"]');
-  if (btn) { btn.textContent = "Opening your email client..."; btn.disabled = true; }
+  if (btn) { btn.textContent = "Opening checkout... complete payment there"; btn.disabled = false; }
   return false;
 }
 </script>
