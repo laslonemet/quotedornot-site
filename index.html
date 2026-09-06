@@ -334,7 +334,7 @@
       </p>
       <div class="cta-row">
         <a href="#request" class="btn btn-primary">Request the audit — $299</a>
-        <a href="/question.html" class="btn btn-ghost">Ask a question first</a>
+        <a href="/question.html" class="btn btn-ghost" data-modal>Ask a question first</a>
       </div>
       <div class="hero-trust">
         <span>5 business days</span>·
@@ -569,7 +569,7 @@
           <li><b>02</b><span>You pay $299 on the secure checkout that opens. We get your details at the same time.</span></li>
           <li><b>03</b><span>Intake questions arrive by email - full report lands within 5 business days.</span></li>
         </ul>
-        <p class="req-alt">Not sure yet? <a href="/question.html">Ask a question first</a> - we reply within one business day.</p>
+        <p class="req-alt">Not sure yet? <a href="/question.html" data-modal>Ask a question first</a> - we reply within one business day.</p>
       </div>
       <div class="form-card reveal">
         <form onsubmit="return submitAuditForm(event)" method="POST" class="form-grid">
@@ -651,7 +651,7 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:hello@quotedornot.com">hello@quotedornot.com</a></li>
-          <li><a href="/question.html">Ask a question</a></li>
+          <li><a href="/question.html" data-modal>Ask a question</a></li>
           <li><a href="#request">Request the audit</a></li>
         </ul>
       </div>
@@ -709,6 +709,48 @@ function submitAuditForm(e) {
   if (btn) { btn.textContent = "Opening checkout... complete payment there"; btn.disabled = false; }
   return false;
 }
+</script>
+
+<style>
+  .qmodal-overlay{position:fixed;inset:0;background:rgba(4,6,10,.72);backdrop-filter:blur(6px);
+    display:none;align-items:center;justify-content:center;z-index:999;padding:24px;
+    animation:qfade .18s ease}
+  .qmodal-overlay.open{display:flex}
+  @keyframes qfade{from{opacity:0}to{opacity:1}}
+  .qmodal{position:relative;width:100%;max-width:680px;height:min(760px,92vh);
+    border:1px solid var(--line2);border-radius:14px;background:var(--card);
+    box-shadow:0 40px 120px rgba(0,0,0,.6);overflow:hidden;
+    animation:qpop .22s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes qpop{from{transform:translateY(16px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+  .qmodal iframe{width:100%;height:100%;border:0;background:var(--bg)}
+  .qmodal-close{position:absolute;top:12px;right:14px;z-index:2;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--line2);background:var(--bg2);color:var(--muted);font-size:18px;line-height:1;
+    cursor:pointer;transition:color .2s,border-color .2s;font-family:var(--mono)}
+  .qmodal-close:hover{color:var(--accent);border-color:var(--accent)}
+</style>
+<div class="qmodal-overlay" id="qmodal">
+  <div class="qmodal">
+    <button class="qmodal-close" onclick="closeQ()" aria-label="Close">&times;</button>
+    <iframe id="qframe" src="about:blank" title="Ask a question"></iframe>
+  </div>
+</div>
+<script>
+(function(){
+  var ov = document.getElementById('qmodal'), fr = document.getElementById('qframe');
+  window.openQ = function(href){
+    fr.src = href; ov.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeQ = function(){
+    ov.classList.remove('open'); fr.src = 'about:blank';
+    document.body.style.overflow = '';
+  };
+  ov.addEventListener('click', function(e){ if(e.target === ov) closeQ(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeQ(); });
+  document.querySelectorAll('a[data-modal]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); openQ(a.getAttribute('href')); });
+  });
+})();
 </script>
 </body>
 </html>
