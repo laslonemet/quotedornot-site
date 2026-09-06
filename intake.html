@@ -67,5 +67,16 @@ function submitForm(e){
   return false;
 }
 </script>
+
+<script>
+// Prefill from URL params (?company=X&website=Y&email=Z&niche=N)
+(function(){
+  var q = new URLSearchParams(window.location.search);
+  ["company","website","email","niche"].forEach(function(n){
+    var v = q.get(n);
+    if (v) { var el = document.querySelector('[name="'+n+'"]'); if (el) el.value = v; }
+  });
+})();
+</script>
 </body>
 </html>
