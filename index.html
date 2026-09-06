@@ -572,7 +572,7 @@
         <p class="req-alt">Prefer to talk first? <a href="https://calendly.com/quotedornot/intro" target="_blank" rel="noopener">Book a 15-min intro call</a>.</p>
       </div>
       <div class="form-card reveal">
-        <form action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" class="form-grid">
+        <form onsubmit="return submitAuditForm(event)" method="POST" class="form-grid">
           <input type="hidden" name="_subject" value="New audit request — QuotedOrNot">
           <div class="field">
             <label for="f-name">Name</label>
@@ -674,5 +674,19 @@
   })();
 </script>
 
+
+<script>
+function submitAuditForm(e) {
+  e.preventDefault();
+  var f = e.target;
+  var get = function(n){ var el=f.querySelector('[name="'+n+'"]'); return el ? el.value.trim() : ''; };
+  var body = "Audit request\n\nName: "+get("name")+"\nWork email: "+get("email")+"\nCompany: "+get("company")+"\nWebsite: "+get("website")+"\nNiche: "+get("niche")+"\nMarketing budget: "+get("budget")+"\n\n(sent via quotedornot.com)";
+  var mail = "hello@quotedornot.com";
+  window.location.href = "mailto:"+mail+"?subject="+encodeURIComponent("AI Visibility Audit request - "+get("company"))+"&body="+encodeURIComponent(body);
+  var btn = f.querySelector('button[type="submit"]');
+  if (btn) { btn.textContent = "Opening your email client..."; btn.disabled = true; }
+  return false;
+}
+</script>
 </body>
 </html>
