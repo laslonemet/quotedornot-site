@@ -591,6 +591,22 @@
             <input id="f-website" name="website" type="url" placeholder="https://yourfirm.com" required>
           </div>
           <div class="field">
+            <label for="f-region">Main region you serve</label>
+            <select id="f-region" name="region" required>
+              <option value="" selected disabled>Select region</option>
+              <option>US - National</option>
+              <option>US - Regional</option>
+              <option>UK</option>
+              <option>Canada</option>
+              <option>EU</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-competitors">2 competitors</label>
+            <input id="f-competitors" name="competitors" type="text" placeholder="e.g. Corsica, Applied Tech">
+          </div>
+          <div class="field">
             <label for="f-niche">Niche</label>
             <select id="f-niche" name="niche" required>
               <option value="" disabled selected>Select your niche</option>
@@ -683,7 +699,7 @@ function submitAuditForm(e) {
   // 1) checkout megnyitasa uj fuleben
   window.open("https://quotedornotstore.lemonsqueezy.com/checkout/buy/bfc23d4c-0dcc-42ae-833c-8667a11f799e?media=0&logo=0", "_blank");
   // 2) az adatok meg tobbekbol elo, hogy a kiszallas ne vesszen el
-  var body = "Audit request\n\nName: "+get("name")+"\nWork email: "+get("email")+"\nCompany: "+get("company")+"\nWebsite: "+get("website")+"\nNiche: "+get("niche")+"\nMarketing budget: "+get("budget")+"\n\nCheckout opened in a new tab. (sent via quotedornot.com)";
+  var body = "Audit request\n\nName: "+get("name")+"\nWork email: "+get("email")+"\nCompany: "+get("company")+"\nWebsite: "+get("website")+"\nNiche: "+get("niche")+"\nRegion: "+get("region")+"\nCompetitors: "+get("competitors")+"\nMarketing budget: "+get("budget")+"\n\nCheckout opened in a new tab. (sent via quotedornot.com)";
   var mail = "hello@quotedornot.com";
   // a mailto csak hatterben valtja ki - nem zavarja a checkout tabot
   var a = document.createElement("a");
