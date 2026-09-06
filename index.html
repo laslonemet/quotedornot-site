@@ -1,64 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuotedOrNot — Is your firm visible to AI buyers?</title>
-<meta name="description" content="We test how AI assistants answer questions about your B2B firm across 4 different AI models. You get a 15-page evidence report: where you appear, where you vanish, and what to fix. $299 flat.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visibility Audit | Get Quoted by AI in 5 Days - $299</title>
+<meta name="description" content="Buyers ask AI assistants who to hire. We measure whether the models name your firm - and deliver a prioritized fix list in 5 business days. $299 flat. Book your audit.">
 <style>
-  :root { --ink:#0f172a; --paper:#f8fafc; --accent:#4f46e5; --warn:#b45309; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:var(--ink); background:var(--paper); line-height:1.6; }
-  main { max-width:760px; margin:0 auto; padding:48px 24px; }
-  .kicker { font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600; }
-  h1 { font-size:40px; line-height:1.15; margin:12px 0 16px; letter-spacing:-.02em; }
-  .sub { font-size:19px; color:#334155; margin-bottom:28px; }
-  .proof { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:20px 24px; margin:24px 0; }
-  .proof h2 { font-size:15px; color:var(--warn); margin-bottom:8px; }
-  .proof code { background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:14px; }
-  ul.fix { margin:16px 0 0 20px; }
-  ul.fix li { margin-bottom:6px; }
-  .price-box { background:#0f172a; color:#fff; border-radius:12px; padding:24px; margin:28px 0; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
-  .price-box .p { font-size:32px; font-weight:700; }
-  .price-box small { color:#94a3b8; }
-  .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:12px 24px; border-radius:8px; }
-  .steps { display:grid; grid-template-columns:1fr; gap:12px; margin:24px 0; }
-  .step { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px 20px; }
-  .step b { color:var(--accent); }
-  footer { margin-top:40px; font-size:13px; color:#64748b; }
+  :root{
+    --bg:#0a0c0f;
+    --bg2:#0e1116;
+    --card:#11151b;
+    --ink:#eceef1;
+    --muted:#9aa3ad;
+    --faint:#6b7480;
+    --line:rgba(255,255,255,.08);
+    --line2:rgba(255,255,255,.16);
+    --accent:#e2a63d;
+    --accent-hi:#f0b954;
+    --accent-ink:#171106;
+    --red:#e0655f;
+    --green:#58c184;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    --radius:12px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  section[id],footer[id]{scroll-margin-top:84px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(10,12,15,.82);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{font-family:var(--mono);font-size:15px;letter-spacing:-.02em;font-weight:600;color:var(--ink)}
+  .logo em{font-style:normal;color:var(--accent)}
+  .logo span.dot{color:var(--faint)}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--muted)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    font-size:13.5px;font-weight:600;color:var(--accent-ink);
+    background:var(--accent);padding:9px 16px;border-radius:7px;
+    transition:background .2s;white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--accent-hi)}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  }
+  .eyebrow b{color:var(--accent);font-weight:500}
+  .eyebrow::after{content:"";height:1px;width:56px;background:var(--line2)}
+  h1,h2,h3{font-weight:650;letter-spacing:-.025em;line-height:1.1}
+  .h2{font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.12;max-width:20ch}
+  .lead{color:var(--muted);font-size:1.075rem;max-width:62ch;margin-top:18px}
+  .section{padding:112px 0;border-top:1px solid var(--line)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:164px 0 96px;
+    background:
+      radial-gradient(900px 480px at 78% -10%, rgba(226,166,61,.09), transparent 60%),
+      radial-gradient(700px 500px at 8% 110%, rgba(88,120,180,.06), transparent 60%),
+      var(--bg);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:72px;align-items:center}
+  .hero-tag{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:26px;display:flex;align-items:center;gap:10px;
+  }
+  .hero-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+  h1{font-size:clamp(2.5rem,5vw,4.1rem);line-height:1.05;max-width:15ch}
+  h1 .hl{color:var(--accent)}
+  .hero-sub{color:var(--muted);font-size:1.13rem;line-height:1.65;max-width:54ch;margin-top:26px}
+  .hero-sub strong{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:15px;font-weight:600;padding:15px 24px;border-radius:8px;
+    transition:background .2s,border-color .2s,color .2s;cursor:pointer;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent);color:var(--accent-ink)}
+  .btn-primary:hover{background:var(--accent-hi)}
+  .btn-ghost{border-color:var(--line2);color:var(--ink);background:transparent}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn .arr{font-family:var(--mono);font-weight:400}
+  .hero-trust{font-family:var(--mono);font-size:12.5px;color:var(--faint);margin-top:22px;letter-spacing:.02em}
+  .hero-trust span{margin-right:6px}
+
+  /* ---------- answer card ---------- */
+  .answer-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45);
+  }
+  .ac-chrome{
+    display:flex;align-items:center;gap:8px;padding:14px 20px;
+    border-bottom:1px solid var(--line);background:var(--bg2);
+  }
+  .ac-dot{width:9px;height:9px;border-radius:50%;background:var(--line2)}
+  .ac-title{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.1em;margin-left:8px;text-transform:uppercase}
+  .ac-body{padding:24px}
+  .ac-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;margin-bottom:8px}
+  .ac-q{font-size:15px;color:var(--ink);font-weight:550;margin-bottom:20px}
+  .ac-a{font-size:14.5px;color:var(--muted);line-height:1.7}
+  .ac-a b{color:var(--ink);font-weight:600;border-bottom:1px solid rgba(226,166,61,.5)}
+  .ac-stats{border-top:1px solid var(--line);margin-top:22px;padding-top:18px;display:grid;gap:10px}
+  .ac-row{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+  .ac-row .k{color:var(--muted)}
+  .ac-row .v{font-family:var(--mono);font-size:13px;font-weight:600}
+  .v-bad{color:var(--red)}
+  .v-warn{color:var(--accent)}
+  .ac-cap{padding:14px 24px;border-top:1px solid var(--line);background:var(--bg2);font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.6;letter-spacing:.02em}
+
+  /* ---------- numbers strip ---------- */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+  .strip-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line)}
+  .strip-cell{background:var(--bg2);padding:30px 26px}
+  .strip-num{font-size:clamp(2rem,3vw,2.6rem);font-weight:650;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .strip-num em{font-style:normal;color:var(--accent)}
+  .strip-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:10px;line-height:1.5}
+
+  /* ---------- why now ---------- */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px}
+  .why-item{border-left:1px solid var(--line2);padding-left:24px}
+  .why-item h3{font-size:1.12rem;margin-bottom:12px;letter-spacing:-.01em}
+  .why-item p{color:var(--muted);font-size:.95rem;line-height:1.7}
+
+  /* ---------- pilot ---------- */
+  .pilot{background:var(--bg2)}
+  .pilot-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center;margin-top:8px}
+  .pilot-stat{
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--card);
+    padding:48px 40px;text-align:left;
+  }
+  .pilot-big{font-family:var(--mono);font-size:clamp(4rem,7vw,6rem);font-weight:600;letter-spacing:-.04em;line-height:1;color:var(--accent)}
+  .pilot-big span{color:var(--faint)}
+  .pilot-stat p{color:var(--muted);font-size:.95rem;margin-top:18px;line-height:1.65}
+  .pilot-copy p{color:var(--muted);font-size:1.02rem;line-height:1.75;margin-top:18px}
+  .pilot-copy p strong{color:var(--ink);font-weight:600}
+  .method-note{
+    font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.03em;
+    border:1px dashed var(--line2);border-radius:8px;padding:14px 18px;margin-top:28px;line-height:1.7;
+  }
+
+  /* ---------- steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:56px}
+  .step{background:var(--bg);padding:36px 30px 40px}
+  .step-num{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-bottom:20px;display:block}
+  .step h3{font-size:1.2rem;margin-bottom:14px;letter-spacing:-.015em}
+  .step p{color:var(--muted);font-size:.95rem;line-height:1.7}
+  .step p code{font-family:var(--mono);font-size:.85em;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:1px 6px;border-radius:5px}
+
+  /* ---------- report ---------- */
+  .report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+  .rcard{
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--card);
+    padding:28px 26px;transition:border-color .25s,background .25s;
+  }
+  .rcard:hover{border-color:var(--line2);background:#131820}
+  .rcard .idx{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.12em;display:block;margin-bottom:18px}
+  .rcard h3{font-size:1.05rem;margin-bottom:10px;letter-spacing:-.01em}
+  .rcard p{color:var(--muted);font-size:.9rem;line-height:1.7}
+
+  /* ---------- pricing ---------- */
+  .pricing{background:var(--bg2)}
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+  .pcard{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;display:flex;flex-direction:column}
+  .pcard.featured{border-color:rgba(226,166,61,.45);background:linear-gradient(180deg,rgba(226,166,61,.06),transparent 45%),var(--card)}
+  .pcard .tier{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .pcard .amount{font-size:clamp(2.6rem,4vw,3.4rem);font-weight:650;letter-spacing:-.03em;line-height:1}
+  .pcard .amount small{font-size:1rem;color:var(--faint);font-weight:500;letter-spacing:0;margin-left:8px}
+  .pcard ul{list-style:none;margin:26px 0 32px;display:grid;gap:12px;flex:1}
+  .pcard li{color:var(--muted);font-size:.94rem;line-height:1.6;padding-left:24px;position:relative}
+  .pcard li::before{content:"—";position:absolute;left:0;color:var(--accent);font-family:var(--mono)}
+  .guarantee{
+    margin-top:16px;border:1px solid var(--line2);border-left:3px solid var(--accent);
+    border-radius:var(--radius);background:var(--card);padding:30px 34px;
+    display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;
+  }
+  .guarantee .g-tag{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);padding-top:3px;white-space:nowrap}
+  .guarantee p{color:var(--muted);font-size:1rem;line-height:1.7;max-width:72ch}
+  .guarantee p strong{color:var(--ink);font-weight:600}
+
+  /* ---------- faq ---------- */
+  .faq-list{margin-top:48px;border-top:1px solid var(--line);max-width:860px}
+  details{border-bottom:1px solid var(--line)}
+  summary{
+    cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+    padding:24px 0;font-size:1.06rem;font-weight:600;letter-spacing:-.01em;transition:color .2s;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--accent)}
+  summary::after{content:"+";font-family:var(--mono);font-size:1.2rem;color:var(--faint);transition:transform .25s,color .2s;flex-shrink:0}
+  details[open] summary::after{transform:rotate(45deg);color:var(--accent)}
+  details .a{color:var(--muted);font-size:.96rem;line-height:1.75;padding:0 0 26px;max-width:68ch}
+  details .a strong{color:var(--ink);font-weight:600}
+
+  /* ---------- request form ---------- */
+  .request{background:var(--bg2)}
+  .req-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;margin-top:8px;align-items:start}
+  .req-copy p{color:var(--muted);font-size:1rem;line-height:1.75;margin-top:18px;max-width:46ch}
+  .req-steps{list-style:none;margin-top:32px;display:grid;gap:0;border-top:1px solid var(--line)}
+  .req-steps li{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);font-size:.94rem;color:var(--muted);line-height:1.6}
+  .req-steps li b{font-family:var(--mono);color:var(--accent);font-weight:500;font-size:13px;padding-top:2px}
+  .req-alt{margin-top:28px;font-size:.95rem;color:var(--muted)}
+  .req-alt a{color:var(--accent);border-bottom:1px solid rgba(226,166,61,.4);transition:color .2s,border-color .2s}
+  .req-alt a:hover{color:var(--accent-hi);border-color:var(--accent-hi)}
+  .form-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:36px}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field.full{grid-column:1/-1}
+  .field label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .field input,.field select{
+    background:var(--bg);border:1px solid var(--line2);border-radius:8px;
+    color:var(--ink);font-family:var(--sans);font-size:15px;padding:13px 14px;
+    width:100%;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none;
+  }
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%239aa3ad' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer;
+  }
+  .field select:invalid{color:var(--faint)}
+  .field input::placeholder{color:var(--faint)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(226,166,61,.15)}
+  .form-submit{
+    grid-column:1/-1;margin-top:6px;background:var(--accent);color:var(--accent-ink);
+    border:none;border-radius:8px;font-family:var(--sans);font-size:15.5px;font-weight:650;
+    padding:16px;cursor:pointer;transition:background .2s;
+  }
+  .form-submit:hover{background:var(--accent-hi)}
+  .form-note{grid-column:1/-1;font-family:var(--mono);font-size:11.5px;color:var(--faint);line-height:1.7;letter-spacing:.02em}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:64px 0 40px;background:var(--bg)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
+  .foot-brand p{color:var(--faint);font-size:.9rem;margin-top:14px;max-width:32ch;line-height:1.7}
+  .foot-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;font-weight:500}
+  .foot-col ul{list-style:none;display:grid;gap:10px}
+  .foot-col a{color:var(--muted);font-size:.92rem;transition:color .2s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-bottom{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11.5px;color:var(--faint);line-height:1.7;letter-spacing:.02em;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid,.pilot-grid,.req-grid{grid-template-columns:1fr;gap:48px}
+    .why-grid{grid-template-columns:1fr;gap:32px}
+    .steps{grid-template-columns:1fr}
+    .report-grid{grid-template-columns:1fr 1fr}
+    .price-grid{grid-template-columns:1fr}
+    .strip-grid{grid-template-columns:repeat(3,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .section{padding:84px 0}
+    .hero{padding:140px 0 72px}
+  }
+  @media (max-width:640px){
+    .nav-links{display:none}
+    .report-grid{grid-template-columns:1fr}
+    .strip-grid{grid-template-columns:repeat(2,1fr)}
+    .form-grid{grid-template-columns:1fr}
+    .guarantee{grid-template-columns:1fr;gap:12px}
+    .foot-grid{grid-template-columns:1fr}
+    .form-card{padding:26px 22px}
+  }
+.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
 </style>
+<meta property="og:title" content="AI Visibility Audit | Get Quoted by AI in 5 Days">
+<meta property="og:description" content="We measure whether AI models name your firm - and deliver a prioritized fix list. $299 flat.">
+<meta property="og:url" content="https://quotedornot.com/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://quotedornot.com/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0c0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%230a0c0f%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2755%27 text-anchor=%27middle%27 fill=%27%236366f1%27 font-family=%27Arial%27 font-weight=%27bold%27%3EQ%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-<main>
-  <div class="kicker">AI Visibility Audit for B2B Firms</div>
-  <h1>Buyers ask ChatGPT and Claude for recommendations.<br>Is your firm in the answer?</h1>
-  <p class="sub">Google traffic to B2B sites is collapsing as buyers move to AI assistants. When someone asks an AI "who are the best {your niche} firms?", the shortlist is written in one sentence &mdash; and most firms are not in it. You'll never see the lead you lost.</p>
 
-  <div class="proof">
-    <h2>Real output, from a real test we ran today</h2>
-    <p>We asked two AI models: <code>Who are the leading managed IT services providers in the US?</code> One model named 8 firms. The other named 5. Two names appeared on both lists. Everyone else: invisible.</p>
-    <ul class="fix">
-      <li>4 different AI model families tested (not just one chatbot)</li>
-      <li>11 buyer-style questions: discovery, comparison, trust, pricing, contact</li>
-      <li>Evidence: full verbatim answers, dated and archived</li>
-      <li>Fix list: what to change so the models learn to name you</li>
-    </ul>
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">Quoted<em>OrNot</em><span class="dot">.com</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#method">Method</a>
+      <a href="#report">The report</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#request" class="nav-cta">Request audit</a>
   </div>
+</header>
 
-  <div class="steps">
-    <div class="step"><b>1.</b> You send your company name and website. Takes 2 minutes.</div>
-    <div class="step"><b>2.</b> We run the audit across 4 AI models, 11 questions each, and analyze your site.</div>
-    <div class="step"><b>3.</b> You get a 15-page PDF report in 5 business days. If it shows nothing actionable, you don't pay.</div>
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <div class="hero-tag">AI Visibility Audit</div>
+      <h1>Your next client asked an AI who to hire. <span class="hl">It named your competitors.</span></h1>
+      <p class="hero-sub">
+        B2B buyers no longer start with Google. They ask an AI assistant for a shortlist — and act on it.
+        If the models don't name your firm, <strong>you never make the list, and you never see the lead you lost.</strong>
+        We measure exactly where you stand, and what to fix first.
+      </p>
+      <div class="cta-row">
+        <a href="#request" class="btn btn-primary">Request the audit — $299 <span class="arr">-&gt;</span></a>
+        <a href="https://calendly.com/quotedornot/intro" target="_blank" rel="noopener" class="btn btn-ghost">Book a 15-min intro call</a>
+      </div>
+      <div class="hero-trust">
+        <span>5 business days</span>·
+        <span>15-page report</span>·
+        <span>Nothing actionable, nothing owed</span>
+      </div>
+    </div>
+
+    <div class="reveal in">
+      <div class="answer-card">
+        <div class="ac-chrome">
+          <span class="ac-dot"></span><span class="ac-dot"></span><span class="ac-dot"></span>
+          <span class="ac-title">Illustrative — what a buyer sees</span>
+        </div>
+        <div class="ac-body">
+          <div class="ac-label">Buyer asks</div>
+          <p class="ac-q">"Who are the leading managed IT providers for mid-size firms in the Midwest?"</p>
+          <div class="ac-label">AI answers</div>
+          <p class="ac-a">
+            "Several providers stand out in this segment. <b>Northbridge Technologies</b> is frequently cited
+            for response times. <b>Helix Managed Services</b> is known for fixed-fee pricing, and
+            <b>Cardinal IT Group</b> has strong reviews in healthcare and finance…"
+          </p>
+          <div class="ac-stats">
+            <div class="ac-row"><span class="k">Your firm</span><span class="v v-bad">NOT MENTIONED</span></div>
+            <div class="ac-row"><span class="k">Competitors named</span><span class="v v-warn">3</span></div>
+          </div>
+        </div>
+        <div class="ac-cap">Illustrative example. Your audit records the real answers — verbatim — from four model families.</div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="price-box">
-    <div><div class="p">$299</div><small>flat, one audit, no retainer required</small></div>
-    <a class="btn" href="mailto:hello@quotedornot.com?subject=Audit%20request">Request your audit</a>
+<!-- ================= NUMBERS STRIP ================= -->
+<div class="strip">
+  <div class="wrap" style="padding:0">
+    <div class="strip-grid">
+      <div class="strip-cell reveal"><div class="strip-num">11</div><div class="strip-label">Buyer-style questions</div></div>
+      <div class="strip-cell reveal"><div class="strip-num">4</div><div class="strip-label">AI model families</div></div>
+      <div class="strip-cell reveal"><div class="strip-num">44</div><div class="strip-label">Verbatim answers recorded</div></div>
+      <div class="strip-cell reveal"><div class="strip-num">15</div><div class="strip-label">Pages in your report</div></div>
+      <div class="strip-cell reveal"><div class="strip-num">5</div><div class="strip-label">Business days to delivery</div></div>
+    </div>
   </div>
+</div>
 
-  <p class="sub" style="font-size:15px;color:#475569">After 90 days you can re-run the audit and measure whether the fixes moved the needle. Re-audit: $149.</p>
+<!-- ================= WHY NOW ================= -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>01</b> Why now</div>
+    <h2 class="h2 reveal">The shortlist moved. Most firms haven't noticed.</h2>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <h3>The first call moved</h3>
+        <p>Buyers who used to search Google for "top firms in your niche" now ask an AI assistant — and act on the handful of names it gives them. Google traffic to B2B sites is measurably dropping. The questions didn't disappear; they went somewhere else.</p>
+      </div>
+      <div class="why-item reveal">
+        <h3>There is no page two</h3>
+        <p>A search result ranks ten links. An AI answer names a few firms and moves on. If you're not one of them, you don't rank lower — you're absent. Absence doesn't show up in your analytics.</p>
+      </div>
+      <div class="why-item reveal">
+        <h3>The loss is invisible</h3>
+        <p>No impression, no click, no bounce rate. The shortlist formed without you and the deal closed somewhere else. The only way to see it is to ask the models the same questions your buyers ask — and record what comes back.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>QuotedOrNot is an independent AI visibility research service. We run every audit manually against live AI models &mdash; no scraped data, no recycled reports.<br>Contact: hello@quotedornot.com</footer>
-</main>
+<!-- ================= PILOT ================= -->
+<section class="section pilot" id="pilot">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>02</b> Pilot findings</div>
+    <div class="pilot-grid">
+      <div class="pilot-stat reveal">
+        <div class="pilot-big">7<span>/</span>11</div>
+        <p>Average mentions per firm across 11 buyer-style questions, in our pilot of three established US managed-IT-services firms.</p>
+      </div>
+      <div class="pilot-copy reveal">
+        <h2 class="h2">Established firms are missing from a third of AI answers.</h2>
+        <p>We ran our audit method on three established US managed-IT-services firms — real companies, real revenue, real reputations. Across two model families, they appeared in an average of <strong>7 of 11 answers</strong>. The rest of the time, the AI named someone else.</p>
+        <p>That's the pattern worth paying attention to: <strong>being good at the work and being named by the models are two different things.</strong> One is earned in the market. The other is earned in the data the models read — and it can be measured and fixed.</p>
+        <div class="method-note">METHOD: 3 firms · 11 questions · 2 model families (Qwen, DeepSeek). Small sample, early data — directional, not definitive. Your audit covers 4 model families and your actual niche.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>03</b> Method</div>
+    <h2 class="h2 reveal">Three steps. Five business days.</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">STEP 01</span>
+        <h3>We ask what buyers ask</h3>
+        <p>Eleven questions a real buyer would type: <code>who are the leading firms in your niche</code>, <code>is your firm reputable</code>, <code>how much does it cost</code>. We put them to four independent model families — Qwen, DeepSeek, Hermes, and MiniMax — and record every answer verbatim.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">STEP 02</span>
+        <h3>We read your site the way a model does</h3>
+        <p>We analyze your website: what it states clearly, what it leaves ambiguous, and what the models simply can't find. We also track which competitors get named when you don't — and what their sites say that yours doesn't.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">STEP 03</span>
+        <h3>You get the report</h3>
+        <p>A 15-page PDF: where you appear, where you're missing, who shows up instead, and a prioritized fix list written for practitioners. If there's nothing actionable in it, you pay nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REPORT ================= -->
+<section class="section" id="report">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>04</b> The report</div>
+    <h2 class="h2 reveal">What's in the report</h2>
+    <p class="lead reveal">Fifteen pages. No filler, no screenshots of dashboards you can't act on. Six things you can use.</p>
+    <div class="report-grid">
+      <div class="rcard reveal">
+        <span class="idx">01</span>
+        <h3>Verbatim answer log</h3>
+        <p>All 44 answers, unedited. What each model actually says about you — and about the firms it recommends instead.</p>
+      </div>
+      <div class="rcard reveal">
+        <span class="idx">02</span>
+        <h3>Mention map</h3>
+        <p>A question-by-question grid of where you're named and where you're absent, across all four model families.</p>
+      </div>
+      <div class="rcard reveal">
+        <span class="idx">03</span>
+        <h3>Competitor displacement list</h3>
+        <p>The firms named when you aren't — ranked by how often they appear and which questions they own.</p>
+      </div>
+      <div class="rcard reveal">
+        <span class="idx">04</span>
+        <h3>Website gap analysis</h3>
+        <p>What your site tells the models, what it leaves unclear, and what's missing entirely: services, proof, pricing signals, locations.</p>
+      </div>
+      <div class="rcard reveal">
+        <span class="idx">05</span>
+        <h3>Prioritized fix list</h3>
+        <p>Concrete changes ranked by expected impact and effort. Specific enough to hand to your web team the same day.</p>
+      </div>
+      <div class="rcard reveal">
+        <span class="idx">06</span>
+        <h3>Baseline scorecard</h3>
+        <p>Your mention scores, frozen. This is the baseline your 90-day re-audit measures against.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="section pricing" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>05</b> Pricing</div>
+    <h2 class="h2 reveal">One flat price. No retainer, no tiers.</h2>
+    <div class="price-grid">
+      <div class="pcard featured reveal">
+        <div class="tier">The Audit</div>
+        <div class="amount">$299<small>flat · one time</small></div>
+        <ul>
+          <li>11 buyer-style questions across 4 model families — Qwen, DeepSeek, Hermes, MiniMax</li>
+          <li>Verbatim log of all 44 answers</li>
+          <li>Website gap analysis and competitor displacement list</li>
+          <li>Prioritized fix list and baseline scorecard</li>
+          <li>15-page PDF, delivered in 5 business days</li>
+        </ul>
+        <a href="#request" class="btn btn-primary" style="justify-content:center">Request the audit <span class="arr">-&gt;</span></a>
+      </div>
+      <div class="pcard reveal">
+        <div class="tier">The Re-audit</div>
+        <div class="amount">$149<small>after 90 days</small></div>
+        <ul>
+          <li>Same 11 questions, same 4 model families</li>
+          <li>Measured against your baseline scorecard</li>
+          <li>See what moved, what didn't, and what to do next</li>
+          <li>Available only to audit clients</li>
+        </ul>
+        <a href="#request" class="btn btn-ghost" style="justify-content:center">Start with the audit</a>
+      </div>
+    </div>
+    <div class="guarantee reveal">
+      <span class="g-tag">The guarantee</span>
+      <p>If your report shows nothing actionable — no gaps, no fixes worth making — <strong>you pay nothing</strong>. We say so plainly and refund in full. We'd rather hand back $299 than hand you a report that doesn't earn it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>06</b> FAQ</div>
+    <h2 class="h2 reveal">Fair questions.</h2>
+    <div class="faq-list reveal">
+      <details>
+        <summary>Which AI models do you test?</summary>
+        <div class="a">Four independent model families: <strong>Qwen, DeepSeek, Hermes, and MiniMax</strong>. Each is trained by a different team, on different data, with different methods — which is exactly why we test more than one. We record every answer verbatim, so you can read precisely what each model says about you and about the competitors it names.</div>
+      </details>
+      <details>
+        <summary>Is this just SEO with a new name?</summary>
+        <div class="a">No. SEO competes for ranked links on a results page. AI assistants answer with a short list of names — there is no page two. Some fundamentals overlap (a clear, crawlable site; consistent company information), but the surface, the mechanics, and the failure modes are different. This audit measures the AI surface specifically, and the fix list is written for it.</div>
+      </details>
+      <details>
+        <summary>What if we're already visible?</summary>
+        <div class="a">Then the report documents it. You'll know which questions you win, which you lose, and which competitors are gaining ground. It also becomes your baseline for measuring change over time. And the guarantee still applies: <strong>if we find nothing actionable, you pay nothing.</strong></div>
+      </details>
+      <details>
+        <summary>Why four models instead of one?</summary>
+        <div class="a">Because buyers don't all use the same assistant, and models disagree. One model's answer is an anecdote; four independent answers are a pattern. When three of four models name a competitor and none name you, that's a signal worth acting on — and one a single-model check would never show you.</div>
+      </details>
+      <details>
+        <summary>What happens after the audit?</summary>
+        <div class="a">You implement the fix list yourself, or hand it to your web or marketing team — it's written for practitioners, not executives. After 90 days, a <strong>$149 re-audit</strong> runs the same questions against the same models and measures what moved. There's no retainer and nothing else to buy.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REQUEST ================= -->
+<section class="section request" id="request">
+  <div class="wrap">
+    <div class="eyebrow reveal"><b>07</b> Get started</div>
+    <div class="req-grid">
+      <div class="req-copy reveal">
+        <h2 class="h2">Request your audit.</h2>
+        <p>Tell us where to point the questions. We reply within one business day to confirm scope, timing, and your start date.</p>
+        <ul class="req-steps">
+          <li><b>01</b><span>You submit the form. It takes about two minutes.</span></li>
+          <li><b>02</b><span>We confirm your niche and region, so the questions match how your buyers actually ask.</span></li>
+          <li><b>03</b><span>Five business days later, the 15-page report lands in your inbox.</span></li>
+        </ul>
+        <p class="req-alt">Prefer to talk first? <a href="https://calendly.com/quotedornot/intro" target="_blank" rel="noopener">Book a 15-min intro call</a>.</p>
+      </div>
+      <div class="form-card reveal">
+        <form action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" class="form-grid">
+          <input type="hidden" name="_subject" value="New audit request — QuotedOrNot">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Work email</label>
+            <input id="f-email" name="email" type="email" placeholder="jane@yourfirm.com" required>
+          </div>
+          <div class="field">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" placeholder="Your Firm LLC" required>
+          </div>
+          <div class="field">
+            <label for="f-website">Website</label>
+            <input id="f-website" name="website" type="url" placeholder="https://yourfirm.com" required>
+          </div>
+          <div class="field">
+            <label for="f-niche">Niche</label>
+            <select id="f-niche" name="niche" required>
+              <option value="" disabled selected>Select your niche</option>
+              <option>Managed IT services / MSP</option>
+              <option>Cybersecurity</option>
+              <option>Law firm</option>
+              <option>Accounting / CPA</option>
+              <option>Healthcare services</option>
+              <option>Marketing / creative agency</option>
+              <option>Other B2B services</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-budget">Monthly marketing budget</label>
+            <select id="f-budget" name="budget" required>
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $2,500</option>
+              <option>$2,500 – $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000 – $50,000</option>
+              <option>$50,000+</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Request the audit — $299</button>
+          <p class="form-note">No subscription. No retainer. We reply within one business day. If the report shows nothing actionable, you pay nothing.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo">Quoted<em>OrNot</em><span class="dot">.com</span></span>
+        <p>An independent AI visibility research service. We measure what the models say about your firm — and what to do about it.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@quotedornot.com">hello@quotedornot.com</a></li>
+          <li><a href="https://calendly.com/quotedornot/intro" target="_blank" rel="noopener">Book a 15-min intro call</a></li>
+          <li><a href="#request">Request the audit</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#report">The report</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="y">2025</span> QuotedOrNot.com — All rights reserved.</span>
+      <span>Not affiliated with Qwen, DeepSeek, Hermes, or MiniMax. Model names belong to their respective owners.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
 </body>
 </html>
