@@ -44,6 +44,22 @@
   .form-note{grid-column:1/-1;font-family:var(--mono);font-size:11.5px;color:var(--faint);line-height:1.7;letter-spacing:.02em}
   .ok{display:none;grid-column:1/-1;background:rgba(88,193,132,.08);border:1px solid rgba(88,193,132,.4);color:#58c184;padding:16px;border-radius:8px;font-size:14.5px;line-height:1.6}
   @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+  /* dark thin scrollbar */
+  ::-webkit-scrollbar{width:9px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#262c34;border-radius:5px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#323a44}
+  html{scrollbar-width:thin;scrollbar-color:#262c34 transparent}
+  /* framed (modal iframe) mode: kompakt - semmi scroll nagy kepernyon */
+  html.framed body{padding:20px}
+  html.framed body .logo{margin-bottom:14px;font-size:14px}
+  html.framed body .kicker{margin-bottom:6px}
+  html.framed body h1{font-size:21px;margin-bottom:6px}
+  html.framed body p.sub{font-size:14px;margin-bottom:18px}
+  html.framed body .form-card{padding:22px}
+  html.framed body .form-grid{gap:13px}
+  html.framed body .field textarea{min-height:80px}
+  html.framed body .form-submit{padding:14px;font-size:15px}
 </style>
 </head>
 <body>
@@ -78,6 +94,7 @@
   </form>
 </div>
 <script>
+if (window.self !== window.top) document.documentElement.classList.add('framed');
 function submitQ(e){
   e.preventDefault();
   var f=e.target, g=function(n){var el=f.querySelector('[name="'+n+'"]');return el?el.value.trim():''};
