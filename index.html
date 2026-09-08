@@ -697,7 +697,7 @@ function submitAuditForm(e) {
   var f = e.target;
   var get = function(n){ var el=f.querySelector('[name="'+n+'"]'); return el ? el.value.trim() : ''; };
   // 1) checkout megnyitasa uj fuleben
-  window.open("https://quotedornotstore.lemonsqueezy.com/checkout/buy/bfc23d4c-0dcc-42ae-833c-8667a11f799e?media=0&logo=0", "_blank");
+  window.open("https://quotedornotstore.lemonsqueezy.com/checkout/buy/25ac5aee-726e-4757-a9cc-5049f79b2074?media=0&logo=0", "_blank");
   // 2) az adatok meg tobbekbol elo, hogy a kiszallas ne vesszen el
   var body = "Audit request\n\nName: "+get("name")+"\nWork email: "+get("email")+"\nCompany: "+get("company")+"\nWebsite: "+get("website")+"\nNiche: "+get("niche")+"\nRegion: "+get("region")+"\nCompetitors: "+get("competitors")+"\nMarketing budget: "+get("budget")+"\n\nCheckout opened in a new tab. (sent via quotedornot.com)";
   var mail = "hello@quotedornot.com";
