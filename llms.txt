@@ -1,0 +1,29 @@
+# QuotedOrNot
+
+> AI Visibility Audit: we measure whether AI assistants (ChatGPT, Claude, Gemini, Perplexity) name your business when buyers ask who to hire, and deliver a prioritized fix list within 5 days. One-time $299.
+
+QuotedOrNot answers one question: when a potential buyer asks an AI assistant for a recommendation in your niche, does it name your company or your competitors? The service probes the major AI models with realistic buyer questions, documents exactly what they say about your firm (verbatim answers, named models, dated), and returns a prioritized list of the changes that make AI systems quote your business.
+
+## How the audit works
+
+- We ask ChatGPT, Claude, Gemini, Perplexity and other major models the questions your buyers actually ask (for example: "who are the top managed IT providers in <city>?").
+- You receive the verbatim answers for every model, so you see precisely when AI names you, when it names competitors, and what it claims about you.
+- You get a prioritized fix list: the specific pages, listings and content changes that make AI systems quote your firm.
+- Delivery within 5 days as a PDF report. One-time payment of $299, no subscription.
+
+## Who it is for
+
+Owners and marketing leads of B2B service firms (managed IT providers, agencies, consultancies) who get leads through referrals and search, and want to be visible where their buyers increasingly ask first: AI assistants.
+
+## Key facts
+
+- Product: AI Visibility Audit (one-time, $299)
+- Turnaround: 5 days
+- What you get: verbatim AI answers across major models + prioritized fix list
+- Sample reports: https://quotedornot.com/samples/
+- Official site and checkout: https://quotedornot.com/
+- FAQ: https://quotedornot.com/faq.html
+
+## Contact
+
+Email: hello@quotedornot.com
