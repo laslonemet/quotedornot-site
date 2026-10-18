@@ -1,1 +1,58 @@
-˝KÆœÂj…hùÈû∑¯^Æg¨˝∆úÖÔÏr∂≠rÍ¢Î°∫-≤‹moÆ
+User-agent: *
+Allow: /
+Disallow: /samples/
+
+# AI assistants - explicitly welcome (this product is ABOUT AI visibility)
+User-agent: GPTBot
+Allow: /
+Disallow: /samples/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /samples/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /samples/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /samples/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /samples/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /samples/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /samples/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /samples/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /samples/
+
+User-agent: CCBot
+Allow: /
+Disallow: /samples/
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /samples/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /samples/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /samples/
+
+Sitemap: https://quotedornot.com/sitemap.xml
